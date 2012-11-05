@@ -113,6 +113,19 @@ caption, th, td {
     Components
     ########################################### */
 
+video {
+/*
+    -webkit-filter: hue-rotate(50deg);  
+    -webkit-filter: blur(20px);  
+    -webkit-filter: grayscale(100%);  
+    -webkit-filter: contrast(200%);  
+*/
+}
+
+canvas, img {
+    width: 640px;
+    height: 480px;
+}
 
 
 /*  ###########################################
