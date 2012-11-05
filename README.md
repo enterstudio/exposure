@@ -1,5 +1,3 @@
-# Build Template
+# Capture
 
-Ultra-lightweight starter template for a HTML/CSS/JS project.
-
-Targeted toward modern browsers: WebKit, Firefox, IE9.
+An experimental HTML5 camera by GVN.

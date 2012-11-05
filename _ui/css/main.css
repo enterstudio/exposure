@@ -17,12 +17,16 @@ body {
 h1,h2,h3,h4,h5,h6 { font-weight: 900; }
 
 h1 {
-    font-size: 10px;
+    font-size: 40px;
     line-height: 1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color:rgba(66,66,66,0.8);
+    margin: 0.66em 0;
 }
 
 h2 {
-    font-size: 10px;
+    font-size: 20px;
     line-height: 1em;
 }
 
@@ -60,13 +64,29 @@ ul,ol {
     list-style: none;
 }
 
-a {
-    color: #000;
+.labBadge {
+    font-size: 20px;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    line-height: 1em;
+    padding: 10px 15px;
     text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: 100;
+    margin:10px 0;
 }
 
+    .labBadge span {
+        color:rgba(0,0,0,0.5);
+    }
+    .labBadge:hover {
+        background: rgba(0,0,0,0.4);
+    }
+
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 abbr, img {
@@ -107,13 +127,20 @@ caption, th, td {
     Chrome
     ########################################### */
 
-
+section {
+    width: 1300px;
+    margin:auto;
+}
 
 /*  ###########################################
     Components
     ########################################### */
 
 video {
+    background: #666;
+    width:640px;
+    height:480px;
+    margin-right: 10px;
 /*
     -webkit-filter: hue-rotate(50deg);  
     -webkit-filter: blur(20px);  
@@ -126,6 +153,11 @@ canvas, img {
     width: 640px;
     height: 480px;
 }
+
+.controls {
+    padding:20px 0;
+}
+.
 
 
 /*  ###########################################

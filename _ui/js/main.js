@@ -17,13 +17,23 @@ window.VIDEO = {
         self.elImg = document.querySelector('img');
         self.elCanvas = document.querySelector('canvas');
 
-        self.ctx = self.elCanvas.getContext('2d');
+        self.$btnLine = $('button.line');
+        self.$btnPixel = $('button.pixel');
 
         // PROPERTIES
 
+        self.ctx = self.elCanvas.getContext('2d');
         self.drawInterval = undefined;
+        self.isDrawing = false;
 
         // SETUP
+
+        // Canvas Setup
+
+        self.ctx.fillStyle = '#666';
+        self.ctx.fillRect(0,0,self.options.width,self.options.height);
+
+        // Setup Webcam
 
         window.URL = window.URL || window.webkitURL;
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -35,6 +45,16 @@ window.VIDEO = {
                 throw('getUserMedia not available');
             });
         }
+
+        // EVENT HANDLERS
+
+        self.$btnLine.click(function(event) {
+            self.startRowGrab();
+        });
+
+        self.$btnPixel.click(function(event) {
+            self.startPixelGrab();
+        });
     },
     updatePixel: function (x, y) {
         var self = this;
@@ -51,40 +71,47 @@ window.VIDEO = {
             x = 0,
             y = 0;
 
-        self.drawInterval = setInterval(function () {
-            if (y < self.options.height) {
-                self.updateRow(y);
-                y++;
-            } else {
-                self.stop();
-            }
-        }, 1);
+        if (!self.isDrawing) {
+            self.isDrawing = true;
+
+            self.drawInterval = setInterval(function () {
+                if (y < self.options.height) {
+                    self.updateRow(y);
+                    y++;
+                } else {
+                    self.stop();
+                }
+            }, 1);
+        }
     },
     startPixelGrab: function () {
         var self = this,
             x = 0,
             y = 0;
 
-        self.drawInterval = setInterval(function () {
-            if (y < self.options.height && x < self.options.width) {
-                self.updatePixel(x,y);
-                x++;
+        if (!self.isDrawing) {
+            self.isDrawing = true;
 
-                if (x >= self.options.width) {
-                    x = 0;
-                    y++;
+            self.drawInterval = setInterval(function () {
+                if (y < self.options.height && x < self.options.width) {
+                    self.updatePixel(x,y);
+                    x++;
+
+                    if (x >= self.options.width) {
+                        x = 0;
+                        y++;
+                    }
+                } else {
+                    self.stop();
                 }
-            } else {
-                self.stop();
-            }
-        }, 1);
+            }, 1);
+        }
     },
     stop: function () {
         var self = this;
 
         clearInterval(self.drawInterval);
-
-        console.log('stop');
+        self.isDrawing = false;
     }
 };
 
