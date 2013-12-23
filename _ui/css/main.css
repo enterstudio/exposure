@@ -143,6 +143,10 @@ video {
   margin-right: 10px;
 }
 
+  video:hover {
+    cursor: crosshair;
+  }
+
 canvas, img {
   width: 640px;
   height: 480px;

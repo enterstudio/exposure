@@ -30,6 +30,7 @@ window.VIDEO = {
 
         // Canvas Setup
 
+        self.ctx.imageSmoothingEnabled = true;
         self.ctx.fillStyle = '#666';
         self.ctx.fillRect(0, 0, self.options.width, self.options.height);
 
@@ -75,6 +76,30 @@ window.VIDEO = {
         self.ctx.save();
         self.ctx.beginPath();
         self.ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+        self.ctx.clip();
+        self.ctx.drawImage(self.elVideo, 0, 0, self.options.width, self.options.height);
+        self.ctx.restore();
+    },
+    /**
+     * Capture a polygonal shape from the video feed and render it onto the canvas
+     * @param  {Array} points An array of arrays containing two Number values for x and y coords
+     */
+    updatePolygon: function (points) {
+        var self = this;
+
+        if (points.length < 3) {
+            throw 'Polygons must have at least 3 points';
+        }
+
+        self.ctx.save();
+        self.ctx.beginPath();
+        self.ctx.moveTo(points[0][0], points[0][1]);
+
+        for (var i = 1; i < points.length; i++) {
+            self.ctx.lineTo(points[i][0], points[i][1]);
+        }
+
+        self.ctx.closePath();
         self.ctx.clip();
         self.ctx.drawImage(self.elVideo, 0, 0, self.options.width, self.options.height);
         self.ctx.restore();
