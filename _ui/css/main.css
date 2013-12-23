@@ -1,113 +1,113 @@
 /*  ###########################################
     Primitives & Resets
     ########################################### */
-    
+
 body,div,dl,dt,dd,ul,ol,li,a,h1,h2,h3,h4,h5,h6,pre,form,fieldset,label,input,textarea,p,blockquote,table,th,td,iframe {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    background: #fff;
-    color: #000;
-    font-size: 10px;
-    font-family: Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: #000;
+  font-size: 10px;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6 { font-weight: 900; }
 
 h1 {
-    font-size: 40px;
-    line-height: 1em;
-    text-transform: uppercase;
-    font-weight: 400;
-    color:rgba(66,66,66,0.8);
-    margin: 0.66em 0;
+  font-size: 40px;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color:rgba(66,66,66,0.8);
+  margin: 0.66em 0;
 }
 
 h2 {
-    font-size: 20px;
-    line-height: 1em;
+  font-size: 20px;
+  line-height: 1em;
 }
 
 h3 {
-    font-size: 10px;
-    line-height: 1em;
+  font-size: 10px;
+  line-height: 1em;
 }
 
 h4 {
-    font-size: 10px;
-    line-height: 1em;
+  font-size: 10px;
+  line-height: 1em;
 }
 
 h5 {
-    font-size: 10px;
-    line-height: 1em;
+  font-size: 10px;
+  line-height: 1em;
 }
 
 h6 {
-    font-size: 10px;
-    line-height: 1em;
+  font-size: 10px;
+  line-height: 1em;
 }
 
 p {
-    font-size: 10px;
-    line-height: 1em;
+  font-size: 10px;
+  line-height: 1em;
 }
 
 address,caption,cite,code,dfn,th,var {
-    font-style: normal;
-    font-weight: normal;
+  font-style: normal;
+  font-weight: normal;
 }
 
 ul,ol {
-    list-style: none;
+  list-style: none;
 }
 
 .labBadge {
-    font-size: 20px;
-    color: white;
-    background: rgba(0, 0, 0, 0.3);
-    line-height: 1em;
-    padding: 10px 15px;
-    text-decoration: none;
-    text-align: center;
-    vertical-align: middle;
-    display: inline-block;
-    font-weight: 100;
-    margin:10px 0;
+  font-size: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  line-height: 1em;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  font-weight: 100;
+  margin:10px 0;
 }
 
-    .labBadge span {
-        color:rgba(0,0,0,0.5);
-    }
-    .labBadge:hover {
-        background: rgba(0,0,0,0.4);
-    }
+  .labBadge span {
+    color:rgba(0,0,0,0.5);
+  }
+  .labBadge:hover {
+    background: rgba(0,0,0,0.4);
+  }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 abbr, img {
-    border: 0;
+  border: 0;
 }
 
 strong {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 em {
-    font-style: italic;
+  font-style: italic;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 caption, th, td {
-    text-align: left;
-    font-weight: normal;
+  text-align: left;
+  font-weight: normal;
 }
 
 /*  ###########################################
@@ -117,10 +117,10 @@ caption, th, td {
 .hidden { display: none; }
 
 .offscreen {
-    position: absolute;
-    display: block;
-    left: -999999px;
-    top: -999999px;
+  position: absolute;
+  display: block;
+  left: -999999px;
+  top: -999999px;
 }
 
 /*  ###########################################
@@ -128,8 +128,8 @@ caption, th, td {
     ########################################### */
 
 section {
-    width: 1300px;
-    margin:auto;
+  width: 1300px;
+  margin:auto;
 }
 
 /*  ###########################################
@@ -137,28 +137,20 @@ section {
     ########################################### */
 
 video {
-    background: #666;
-    width:640px;
-    height:480px;
-    margin-right: 10px;
-/*
-    -webkit-filter: hue-rotate(50deg);  
-    -webkit-filter: blur(20px);  
-    -webkit-filter: grayscale(100%);  
-    -webkit-filter: contrast(200%);  
-*/
+  background: #666;
+  width:640px;
+  height:480px;
+  margin-right: 10px;
 }
 
 canvas, img {
-    width: 640px;
-    height: 480px;
+  width: 640px;
+  height: 480px;
 }
 
 .controls {
-    padding:20px 0;
+  padding:20px 0;
 }
-.
-
 
 /*  ###########################################
     View Specific Styles

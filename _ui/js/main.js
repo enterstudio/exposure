@@ -31,7 +31,7 @@ window.VIDEO = {
         // Canvas Setup
 
         self.ctx.fillStyle = '#666';
-        self.ctx.fillRect(0,0,self.options.width,self.options.height);
+        self.ctx.fillRect(0, 0, self.options.width, self.options.height);
 
         // Setup Webcam
 
@@ -39,20 +39,23 @@ window.VIDEO = {
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
         if (navigator.getUserMedia) {
-            navigator.getUserMedia({audio: true, video: true}, function(stream) {
+            navigator.getUserMedia({
+                audio: true,
+                video: true
+            }, function (stream) {
                 self.elVideo.src = window.URL.createObjectURL(stream);
             }, function () {
-                throw('getUserMedia not available');
+                throw ('getUserMedia not available');
             });
         }
 
         // EVENT HANDLERS
 
-        self.$btnLine.click(function(event) {
+        self.$btnLine.click(function (event) {
             self.startRowGrab();
         });
 
-        self.$btnPixel.click(function(event) {
+        self.$btnPixel.click(function (event) {
             self.startPixelGrab();
         });
     },
@@ -65,6 +68,16 @@ window.VIDEO = {
         var self = this;
 
         self.ctx.drawImage(self.elVideo, 0, y, self.options.width, 1, 0, y, self.options.width, 1);
+    },
+    updateCircle: function (x, y, radius) {
+        var self = this;
+
+        self.ctx.save();
+        self.ctx.beginPath();
+        self.ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+        self.ctx.clip();
+        self.ctx.drawImage(self.elVideo, 0, 0, self.options.width, self.options.height);
+        self.ctx.restore();
     },
     startRowGrab: function () {
         var self = this,
@@ -94,7 +107,7 @@ window.VIDEO = {
 
             self.drawInterval = setInterval(function () {
                 if (y < self.options.height && x < self.options.width) {
-                    self.updatePixel(x,y);
+                    self.updatePixel(x, y);
                     x++;
 
                     if (x >= self.options.width) {
