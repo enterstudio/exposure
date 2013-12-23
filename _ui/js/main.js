@@ -30,8 +30,7 @@ window.VIDEO = {
 
         // Canvas Setup
 
-        self.ctx.imageSmoothingEnabled = true;
-        self.ctx.fillStyle = '#666';
+        self.ctx.fillStyle = '#000';
         self.ctx.fillRect(0, 0, self.options.width, self.options.height);
 
         // Setup Webcam
@@ -59,15 +58,26 @@ window.VIDEO = {
         self.$btnPixel.click(function (event) {
             self.startPixelGrab();
         });
+
+        $(self.elVideo).click(function (event) {
+            self.updatePolygon([
+                [event.offsetX, event.offsetY],
+                [Math.random() * self.options.width, Math.random() * self.options.height],
+                [Math.random() * self.options.width, Math.random() * self.options.height],
+            ], Math.random());
+        });
     },
     updatePixel: function (x, y) {
         var self = this;
 
         self.ctx.drawImage(self.elVideo, x, y, 1, 1, x, y, 1, 1);
     },
-    updateRow: function (y) {
+    updateRow: function (y, opacity) {
         var self = this;
 
+        opacity = opacity || 1;
+
+        self.ctx.globalAlpha = opacity;
         self.ctx.drawImage(self.elVideo, 0, y, self.options.width, 1, 0, y, self.options.width, 1);
     },
     updateCircle: function (x, y, radius) {
@@ -84,12 +94,14 @@ window.VIDEO = {
      * Capture a polygonal shape from the video feed and render it onto the canvas
      * @param  {Array} points An array of arrays containing two Number values for x and y coords
      */
-    updatePolygon: function (points) {
+    updatePolygon: function (points, opacity) {
         var self = this;
 
         if (points.length < 3) {
             throw 'Polygons must have at least 3 points';
         }
+
+        opacity = opacity || 1;
 
         self.ctx.save();
         self.ctx.beginPath();
@@ -101,6 +113,7 @@ window.VIDEO = {
 
         self.ctx.closePath();
         self.ctx.clip();
+        self.ctx.globalAlpha = opacity;
         self.ctx.drawImage(self.elVideo, 0, 0, self.options.width, self.options.height);
         self.ctx.restore();
     },
