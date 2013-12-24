@@ -2,6 +2,10 @@
     Primitives & Resets
     ########################################### */
 
+* , *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
 body,div,dl,dt,dd,ul,ol,li,a,h1,h2,h3,h4,h5,h6,pre,form,fieldset,label,input,textarea,p,blockquote,table,th,td,iframe {
   padding: 0;
   margin: 0;
@@ -147,9 +151,10 @@ video {
     cursor: crosshair;
   }
 
-canvas, img {
+canvas {
   width: 640px;
   height: 480px;
+  border: 1px solid #ccc;
 }
 
 .controls {

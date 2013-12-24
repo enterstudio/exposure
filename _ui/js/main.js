@@ -30,7 +30,7 @@ window.VIDEO = {
 
         // Canvas Setup
 
-        self.ctx.fillStyle = '#000';
+        self.ctx.fillStyle = '#fff';
         self.ctx.fillRect(0, 0, self.options.width, self.options.height);
 
         // Setup Webcam
