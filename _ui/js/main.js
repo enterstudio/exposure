@@ -1,3 +1,14 @@
+/*
+
+TODO:
+
+Use module loader for:
+
+jquery
+selection-preview
+
+ */
+
 if (typeof window.VIDEO !== 'undefined') {
     throw 'VIDEO already in use.';
 }
@@ -14,7 +25,7 @@ window.VIDEO = {
         // ELEMENT REFERENCES
 
         self.elVideo = document.querySelector('video');
-        self.elCanvas = document.querySelector('.pane.destination canvas')
+        self.elCanvas = document.querySelector('.pane.destination canvas');
 
         self.$btnLine = $('button.line');
         self.$btnPixel = $('button.pixel');
@@ -29,8 +40,8 @@ window.VIDEO = {
 
         // Canvas Setup
 
-        self.ctx.fillStyle = '#fff';
-        self.ctx.fillRect(0, 0, self.options.width, self.options.height);
+        // self.ctx.fillStyle = '#fff';
+        // self.ctx.fillRect(0, 0, self.options.width, self.options.height);
 
         // Setup Webcam
 
@@ -48,6 +59,10 @@ window.VIDEO = {
             });
         }
 
+        // Setup Selection Preview
+
+        var selectionPreview = new SelectionPreview(document.querySelector('.pane.preview canvas'));
+
         // EVENT HANDLERS
 
         self.$btnLine.click(function (event) {
@@ -58,11 +73,11 @@ window.VIDEO = {
             self.startPixelGrab();
         });
 
-        $(self.elVideo).click(function (event) {
+        selectionPreview.on('coordinateChosen', function (event) {
             self.updatePolygon([
-                [event.offsetX, event.offsetY],
+                [event.x, event.y],
                 [Math.random() * self.options.width, Math.random() * self.options.height],
-                [Math.random() * self.options.width, Math.random() * self.options.height],
+                [Math.random() * self.options.width, Math.random() * self.options.height]
             ], Math.random());
         });
     },

@@ -133,6 +133,7 @@ section {
 
 .panes {
   overflow: hidden;
+  border: 1px solid #ccc;
 }
   .panes .pane {
     float: left;
@@ -141,7 +142,6 @@ section {
     position: relative;
   }
   .panes .pane.destination {
-    border: 1px solid #ccc;
   }
     .panes .pane.preview canvas {
       position: absolute;
