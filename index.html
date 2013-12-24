@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html dir="ltr" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -19,8 +18,16 @@
       <button class="pixel">Pixel</button>
     </div>
 
-    <video autoplay></video>
-    <canvas width="640" height="480"></canvas>
+    <div class="panes">
+      <div class="pane preview">
+        <canvas></canvas>
+        <video autoplay></video>
+      </div>
+
+      <div class="pane destination">
+        <canvas></canvas>
+      </div>
+    </div>
   </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

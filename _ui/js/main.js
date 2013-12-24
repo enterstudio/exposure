@@ -14,8 +14,7 @@ window.VIDEO = {
         // ELEMENT REFERENCES
 
         self.elVideo = document.querySelector('video');
-        self.elImg = document.querySelector('img');
-        self.elCanvas = document.querySelector('canvas');
+        self.elCanvas = document.querySelector('.pane.destination canvas')
 
         self.$btnLine = $('button.line');
         self.$btnPixel = $('button.pixel');
