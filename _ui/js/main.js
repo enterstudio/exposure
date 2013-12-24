@@ -1,3 +1,14 @@
+/*
+
+TODO:
+
+Use module loader for:
+
+jquery
+selection-preview
+
+ */
+
 if (typeof window.VIDEO !== 'undefined') {
     throw 'VIDEO already in use.';
 }
@@ -47,6 +58,10 @@ window.VIDEO = {
                 throw ('getUserMedia not available');
             });
         }
+
+        // Setup Selection Preview
+
+        var selectionPreview = new SelectionPreview(document.querySelector('.pane.preview canvas'));
 
         // EVENT HANDLERS
 

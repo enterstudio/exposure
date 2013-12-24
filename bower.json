@@ -1,0 +1,26 @@
+{
+  "name": "exposure",
+  "version": "0.2.2",
+  "homepage": "https://github.com/gvn/exposure",
+  "authors": [
+    "Gvn Lazar Suntop <gavin@gsuntop.com>"
+  ],
+  "description": "Exposure",
+  "main": "_ui/js/main.js",
+  "keywords": [
+    "camera"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "komponent": "~0.4.0"
+  }
+}
