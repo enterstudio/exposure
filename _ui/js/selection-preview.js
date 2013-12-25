@@ -32,50 +32,113 @@ var SelectionPreview = function (target, options) {
 
     // Properties -------------------------------------------------------------
 
+    self.shapeCoords = [];
+    self.shapeX = 0;
+    self.shapeY = 0;
+
     // Setup ------------------------------------------------------------------
 
     self.ctx = self.elCanvas.getContext('2d');
 
     // Event Delegation -------------------------------------------------------
 
-    $(self.elCanvas).on('click', function(event) {
+    $(self.elCanvas).on('click', function (event) {
         self.fire('coordinateChosen', {
             x: event.offsetX,
             y: event.offsetY
         });
     });
+
+    $(self.elCanvas).on('mousemove', function (event) {
+        self.setPosition(event.offsetX, event.offsetY);
+    });
+
+    // $(self.elCanvas).on('mouseenter', function (event) {
+    // });
+
+    $(self.elCanvas).on('mouseleave', function (event) {
+        self.hide();
+    });
 };
 
 SelectionPreview.prototype = {
-    /**
-     * Show preview poly
-     */
-    show: function () {
-        var self = this;
-
-    },
     /**
      * Hide preview poly
      */
     hide: function () {
         var self = this;
 
+        self.ctx.clearRect(0, 0, self.options.width, self.options.height);
+
+        return self;
     },
     /**
-     * Set the coordinates of the preview polygon
+     * Get preview poly's vertices
+     * @return {Array} Array of vertices
+     */
+    getShape: function () {
+        var self = this;
+
+        return self.shapeCoords;
+    },
+    /**
+     * Set the coordinates of the preview polygon and display it
+     * NOTE: The coordinates are not adjusted for placement on the preview plane
+     *       Placement on the preview plane is set separately
      * @param {Array} coords An array of arrays with 2 numbers [x, y]
      */
     setShape: function (coords) {
         var self = this;
 
+        self.shapeCoords = coords;
+        self.drawShape();
+
+        return self;
     },
     /**
-     * Set the position of the preview poly
+     * Get preview polygon's coordinates
+     * @return {Object} x Number, y Number
+     */
+    getPosition: function () {
+        var self = this;
+
+        return {
+            x: self.shapeX,
+            y: self.shapeY
+        };
+    },
+    /**
+     * Set the position of the preview poly and display it
      * @param {Number} x X coordinate
      * @param {Number} y Y coordinate
      */
     setPosition: function (x, y) {
         var self = this;
 
+        self.shapeX = x;
+        self.shapeY = y;
+        self.drawShape();
+
+        return self;
+    },
+    /**
+     * Draw the preview poly on the canvas
+     */
+    drawShape: function () {
+        var self = this;
+
+        self.hide();
+
+        self.ctx.beginPath();
+        self.ctx.moveTo(self.shapeCoords[0][0] + self.shapeX, self.shapeCoords[0][1] + self.shapeY);
+
+        self.shapeCoords.slice(1).forEach(function (point) {
+            self.ctx.lineTo(point[0] + self.shapeX, point[1] + self.shapeY);
+        });
+
+        self.ctx.closePath();
+        self.ctx.stroke();
+
+        return self;
     }
 };

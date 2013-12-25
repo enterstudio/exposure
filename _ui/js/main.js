@@ -61,7 +61,7 @@ window.VIDEO = {
 
         // Setup Selection Preview
 
-        var selectionPreview = new SelectionPreview(document.querySelector('.pane.preview canvas'));
+        selectionPreview = new SelectionPreview(document.querySelector('.pane.preview canvas'));
 
         // EVENT HANDLERS
 
@@ -73,12 +73,45 @@ window.VIDEO = {
             self.startPixelGrab();
         });
 
+
+
+
+        function createRandomShape(points) {
+            var shape = [
+                [0, 0]
+            ];
+
+            for (var i = 1; i < points; i++) {
+                shape.push([Math.random() * self.options.width, Math.random() * self.options.height])
+            }
+
+            return shape;
+        }
+
+        function getVisibleSelectionCoords() {
+            var shape = selectionPreview.getShape();
+            var position = selectionPreview.getPosition();
+
+            var offsetShape = [];
+
+            shape.forEach(function (coords) {
+                console.log([coords[0] + position.x, coords[1] + position.y]);
+                offsetShape.push([coords[0] + position.x, coords[1] + position.y]);
+            });
+
+            console.log(shape);
+
+            return offsetShape;
+        }
+
+        selectionPreview.setShape(createRandomShape(3));
+        selectionPreview.setPosition(0, 0);
+
         selectionPreview.on('coordinateChosen', function (event) {
-            self.updatePolygon([
-                [event.x, event.y],
-                [Math.random() * self.options.width, Math.random() * self.options.height],
-                [Math.random() * self.options.width, Math.random() * self.options.height]
-            ], Math.random());
+            self.updatePolygon(getVisibleSelectionCoords(), 1);
+
+            selectionPreview.setShape(createRandomShape(3));
+            selectionPreview.setPosition(event.x, event.y);
         });
     },
     updatePixel: function (x, y) {
