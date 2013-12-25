@@ -61,7 +61,7 @@ window.VIDEO = {
 
         // Setup Selection Preview
 
-        selectionPreview = new SelectionPreview(document.querySelector('.pane.preview canvas'));
+        var selectionPreview = new SelectionPreview(document.querySelector('.pane.preview canvas'));
 
         // EVENT HANDLERS
 
