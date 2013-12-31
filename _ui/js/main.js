@@ -6,6 +6,7 @@ Use module loader for:
 
 jquery
 selection-preview
+geometric-utils
 
  */
 
@@ -76,17 +77,6 @@ window.VIDEO = {
 
 
 
-        function createRandomShape(points) {
-            var shape = [
-                [0, 0]
-            ];
-
-            for (var i = 1; i < points; i++) {
-                shape.push([Math.random() * self.options.width, Math.random() * self.options.height])
-            }
-
-            return shape;
-        }
 
         function getVisibleSelectionCoords() {
             var shape = selectionPreview.getShape();
@@ -104,13 +94,13 @@ window.VIDEO = {
             return offsetShape;
         }
 
-        selectionPreview.setShape(createRandomShape(3));
+        selectionPreview.setShape(geometry.createRandomPolygon(3, self.options.width / 2, self.options.height / 2));
         selectionPreview.setPosition(0, 0);
 
         selectionPreview.on('coordinateChosen', function (event) {
-            self.updatePolygon(getVisibleSelectionCoords(), 1);
+            self.updatePolygon(getVisibleSelectionCoords(), 0.75);
 
-            selectionPreview.setShape(createRandomShape(3));
+            selectionPreview.setShape(geometry.createRandomPolygon(3, self.options.width / 2, self.options.height / 2));
             selectionPreview.setPosition(event.x, event.y);
         });
     },

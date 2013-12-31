@@ -6,6 +6,8 @@
 
 */
 
+// TODO - deps : geometric-utilities
+
 var SelectionPreview = function (target, options) {
     var self = this,
         defaults,
@@ -52,9 +54,6 @@ var SelectionPreview = function (target, options) {
     $(self.elCanvas).on('mousemove', function (event) {
         self.setPosition(event.offsetX, event.offsetY);
     });
-
-    // $(self.elCanvas).on('mouseenter', function (event) {
-    // });
 
     $(self.elCanvas).on('mouseleave', function (event) {
         self.hide();
@@ -115,8 +114,14 @@ SelectionPreview.prototype = {
     setPosition: function (x, y) {
         var self = this;
 
-        self.shapeX = x;
-        self.shapeY = y;
+        // TODO : This will simplify once migration to object vertexes is done
+        var dimensions = geometry.getPolyDimensions(geometry.pointArrayToObjectArray(self.shapeCoords));
+
+        // Set cursor in the middle of the shape
+        // TODO - set in actual midpoint of polygon
+        self.shapeX = x - dimensions.width / 2;
+        self.shapeY = y - dimensions.height / 2;
+
         self.drawShape();
 
         return self;
