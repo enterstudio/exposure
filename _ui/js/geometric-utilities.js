@@ -1,4 +1,4 @@
-var geometry = {
+window.geometry = {
   /**
    * Get the width and height of a polygon's bounding box
    * @param  {Array} points An array of vertex objects e.g. {x:Number, y:Number}
@@ -31,7 +31,7 @@ var geometry = {
     return {
       width: largestX - smallestX,
       height: largestY - smallestY
-    }
+    };
   },
   /**
    * Convert an array of vertex arrays into an array of vertex objects
@@ -45,7 +45,7 @@ var geometry = {
       objectArray.push({
         x: point[0],
         y: point[1]
-      })
+      });
     });
 
     return objectArray;
@@ -64,9 +64,9 @@ var geometry = {
       shape.push({
         x: Math.random() * maxWidth,
         y: Math.random() * maxHeight
-      })
+      });
     }
 
     return shape;
   }
-}
+};

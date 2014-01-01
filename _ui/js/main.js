@@ -81,7 +81,10 @@ window.VIDEO = {
       var offsetShape = [];
 
       shape.forEach(function (coords) {
-        console.log({x: coords.x + position.x, y: coords.y + position.y});
+        console.log({
+          x: coords.x + position.x,
+          y: coords.y + position.y
+        });
 
         offsetShape.push({
           x: coords.x + position.x,
@@ -156,7 +159,6 @@ window.VIDEO = {
   },
   startRowGrab: function () {
     var self = this,
-      x = 0,
       y = 0;
 
     if (!self.isDrawing) {

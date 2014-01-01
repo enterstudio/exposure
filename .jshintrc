@@ -3,7 +3,15 @@
     "module": true,
     "define": true,
     "requirejs": true,
-    "require": true
+    "require": true,
+
+    "$": true,
+    "geometry": true,
+    "SelectionPreview": true,
+    "console": true,
+    "VIDEO": true,
+    "Komponent": true
+
   },
   "bitwise": true,
   "browser": true,

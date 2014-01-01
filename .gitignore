@@ -2,3 +2,4 @@ TODO.txt
 .DS_Store
 _design/
 bower_components/
+node_modules/
