@@ -1,12 +1,12 @@
 /*
 
-TODO:
+    TODO:
 
-Use module loader for:
+    Use module loader for:
 
-jquery
-selection-preview
-geometric-utils
+    jquery
+    selection-preview
+    geometric-utils
 
  */
 
@@ -81,8 +81,12 @@ window.VIDEO = {
       var offsetShape = [];
 
       shape.forEach(function (coords) {
-        console.log([coords[0] + position.x, coords[1] + position.y]);
-        offsetShape.push([coords[0] + position.x, coords[1] + position.y]);
+        console.log({x: coords.x + position.x, y: coords.y + position.y});
+
+        offsetShape.push({
+          x: coords.x + position.x,
+          y: coords.y + position.y
+        });
       });
 
       console.log(shape);
@@ -125,7 +129,7 @@ window.VIDEO = {
   },
   /**
    * Capture a polygonal shape from the video feed and render it onto the canvas
-   * @param  {Array} points An array of arrays containing two Number values for x and y coords
+   * @param  {Array} points An array of point objects
    */
   updatePolygon: function (points, opacity) {
     var self = this;
@@ -138,10 +142,10 @@ window.VIDEO = {
 
     self.ctx.save();
     self.ctx.beginPath();
-    self.ctx.moveTo(points[0][0], points[0][1]);
+    self.ctx.moveTo(points[0].x, points[0].y);
 
     for (var i = 1; i < points.length; i++) {
-      self.ctx.lineTo(points[i][0], points[i][1]);
+      self.ctx.lineTo(points[i].x, points[i].y);
     }
 
     self.ctx.closePath();

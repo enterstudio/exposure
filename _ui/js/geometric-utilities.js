@@ -55,18 +55,16 @@ var geometry = {
    * @param  {Number} vertices Number of vertices in the polygon
    * @param  {Number} maxWidth Maximum height of the polygon
    * @param  {Number} maxHeight Maximum width of the polygon
-   * @return {Array} An array of vertex arrays defining the generated polygon
+   * @return {Array} An array of vertex objects {x:Number, y:Number} defining the generated polygon
    */
   createRandomPolygon: function (vertices, maxWidth, maxHeight) {
-    var shape = [
-      //[0, 0]
-    ];
+    var shape = [];
 
     for (var i = 0; i < vertices; i++) {
-      shape.push([
-        Math.random() * maxWidth,
-        Math.random() * maxHeight
-      ])
+      shape.push({
+        x: Math.random() * maxWidth,
+        y: Math.random() * maxHeight
+      })
     }
 
     return shape;

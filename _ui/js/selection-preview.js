@@ -84,7 +84,7 @@ SelectionPreview.prototype = {
    * Set the coordinates of the preview polygon and display it
    * NOTE: The coordinates are not adjusted for placement on the preview plane
    *       Placement on the preview plane is set separately
-   * @param {Array} coords An array of arrays with 2 numbers [x, y]
+   * @param {Array} coords An array of vertex objects e.g. {x:1, y:2}
    */
   setShape: function (coords) {
     var self = this;
@@ -115,7 +115,7 @@ SelectionPreview.prototype = {
     var self = this;
 
     // TODO : This will simplify once migration to object vertexes is done
-    var dimensions = geometry.getPolyDimensions(geometry.pointArrayToObjectArray(self.shapeCoords));
+    var dimensions = geometry.getPolyDimensions(self.shapeCoords);
 
     // Set cursor in the middle of the shape
     // TODO - set in actual midpoint of polygon
@@ -137,10 +137,10 @@ SelectionPreview.prototype = {
     self.hide();
 
     self.ctx.beginPath();
-    self.ctx.moveTo(self.shapeCoords[0][0] + self.shapeX, self.shapeCoords[0][1] + self.shapeY);
+    self.ctx.moveTo(self.shapeCoords[0].x + self.shapeX, self.shapeCoords[0].y + self.shapeY);
 
     self.shapeCoords.slice(1).forEach(function (point) {
-      self.ctx.lineTo(point[0] + self.shapeX, point[1] + self.shapeY);
+      self.ctx.lineTo(point.x + self.shapeX, point.y + self.shapeY);
     });
 
     self.ctx.closePath();
